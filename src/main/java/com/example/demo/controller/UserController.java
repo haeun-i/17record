@@ -25,9 +25,6 @@ public class UserController {
 	@RequestMapping("/sign")
 	public String sign(Model model, HttpSession session){
 		model.addAttribute("userform",new UserForm());
-		if(session != null) {
-			System.out.println(session.getAttribute("id"));
-		}
 		return "user/sign"; 
 	}
 	

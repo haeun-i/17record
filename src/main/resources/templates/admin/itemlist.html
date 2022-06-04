@@ -74,14 +74,32 @@
   <header class="blog-header lh-1 py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
     <div class="col-4 pt-1">
-        <a class="link-secondary" href="#"></a>
+        <a class="link-secondary" href="/loginadmin" style="color : grey;">관리자</a>
       </div>
       <div class="col-4 text-center">
         <a class="blog-header-logo text-dark" href="/">17레코드</a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="btn btn-sm btn-outline-secondary" href="/login">로그인</a>
+      
+    <div>
+    <div th:if="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/login" style="margin:10px;">로그인</a>
+    </div>
+    <div th:unless="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/logout" style="margin:10px;">로그아웃</a>
+    </div>
+	</div>
+		
+		
+	<div>
+    <div th:if="${session.id == null}">
         <a class="btn btn-sm btn-outline-secondary" href="/sign">회원가입</a>
+    </div>
+    <div th:unless="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/mypage">마이페이지</a>
+    </div>
+	</div>
+        
       </div>
     </div>
   </header>

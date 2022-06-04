@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import com.example.demo.domain.LoginForm;
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(long id) {
 		userRepository.deleteById(id);
+	}
+	
+	@Override
+	public Boolean login(LoginForm loginform) {
+		User user = userRepository.findbylogid(loginform.getLogid());
+		String userPw = user.getUserPw();
+		if(userPw.equals(loginform.getPassword())) {
+			return true;
+		}
+		else return false;
+	}
+	
+	@Override
+	public Boolean loginAdmin(LoginForm loginform) {
+		User user = userRepository.findbylogid(loginform.getLogid());
+		String userPw = user.getUserPw();
+		if(userPw.equals(loginform.getPassword()) && user.getUserRole().equals("ROLE_ADMIN")) {
+			return true;
+		}
+		else return false;
 	}
 }

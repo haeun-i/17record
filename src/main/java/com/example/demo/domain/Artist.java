@@ -2,26 +2,45 @@ package com.example.demo.domain;
 import javax.persistence.*;
 
 @Entity
-public class Item {
+public class Artist {
 
 	@Id
-	@Column(name = "item_id")
+	@Column(name = "artist_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private Long artistId;
 
-	@Column(name = "item_name", nullable = false, unique = true)
-	private String itemName;
+	@Column(name = "artist_name", nullable = false, unique = true)
+	private String artistName;
 
-	@Column(name = "item_price", nullable = false, unique = true)
-	private String itemPrice;
+	@Column(name = "category", nullable = false, unique = true)
+	private String category;
 
-	@Column(name = "item_stock", nullable = false, unique = true)
-	private String itemStock;
+	public Long getArtistId() {
+		return artistId;
+	}
 
-	@Column(name = "item_content", nullable = false)
-	private String itemContent;
+	public void setArtistId(Long artistId) {
+		this.artistId = artistId;
+	}
 
-	@OneToOne
-	@JoinColumn(name = "locker_id")
-	private Artist artist;
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	
+
+	
 }

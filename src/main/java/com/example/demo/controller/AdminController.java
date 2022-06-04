@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.domain.Item;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserForm;
+import com.example.demo.service.ItemService;
 import com.example.demo.service.UserService;
 
 import javax.annotation.Resource;
@@ -18,6 +20,9 @@ public class AdminController {
 
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private ItemService itemService;
 
 	@RequestMapping("/adminuser")
 	public String userlist(Model model){
@@ -27,10 +32,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminitem")
-	public String userlist(Model model){
-		List<User> users = userService.getUserList();
-		model.addAttribute("users",users);
-		return "admin/userlist"; 
+	public String itemlist(Model model){
+		List<Item> items = itemService.getItemList();
+		model.addAttribute("items",items);
+		return "admin/itemlist"; 
 	}
 	
 }

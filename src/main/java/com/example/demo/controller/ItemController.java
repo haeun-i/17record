@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.service.UserService;
 
@@ -30,7 +31,7 @@ public class ItemController {
     }
 
     @RequestMapping("/addItem")
-    public String add(ItemForm itemform){
+    public String add(ItemForm itemform) throws Exception{
     	itemService.save(itemform);
         return "redirect:/adminitem";
     }
@@ -40,6 +41,12 @@ public class ItemController {
     public String delete(Long id){
         itemService.delete(id);
         return "redirect:/adminitem";
+    }
+    
+    @RequestMapping("/showboygroup")
+    public String showBoygroup(Model model){
+    	List<Item> items = itemService.getBoygroup();
+        return "item/boygroup";
     }
 
 }

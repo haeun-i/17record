@@ -15,10 +15,10 @@ public class Item {
 	@Column(name = "item_name", nullable = false, unique = true)
 	private String itemName;
 
-	@Column(name = "item_price", nullable = false, unique = true)
+	@Column(name = "item_price", nullable = false)
 	private int itemPrice;
 
-	@Column(name = "item_stock", nullable = false, unique = true)
+	@Column(name = "item_stock", nullable = false)
 	private int itemStock;
 
 	@Column(name = "item_content", nullable = false)

@@ -122,6 +122,7 @@
           <thead>
             <tr>
               <th scope="col">상품번호</th>
+              <th scope="col">상품이미지</th>
               <th scope="col">상품명</th>
               <th scope="col">상품가격</th>
               <th scope="col">상품재고</th>
@@ -133,12 +134,15 @@
           <tbody>
             <tr th:each="item: ${items}">
               <td scope="row" th:text="${item.itemId}"></td>
+              <td scope="row">
+              	<img th:src=@{${item.itemImage}} style="width : 300px; height : 300px;">
+              </td>
               <td scope="row" th:text="${item.itemName}"></td>
               <td scope="row" th:text="${item.itemPrice}"></td>
               <td scope="row" th:text="${item.itemStock}"></td>
               <td scope="row" th:text="${item.itemContent}"></td>
-              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/delete(id=${item.itemId})}">상품수정</a></td>
-              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/delete(id=${item.itemId})}">상품삭제</a></td>
+              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${item.itemId})}">상품수정</a></td>
+              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${item.itemId})}">상품삭제</a></td>
             </tr>
           </tbody>
         </table>

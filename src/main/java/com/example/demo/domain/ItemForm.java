@@ -1,12 +1,22 @@
 package com.example.demo.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ItemForm {
 
     private String name;
-    private int stock;
+    private MultipartFile image;
+	private int stock;
     private int price;
     private String content;
     private String artist;
+    
+    public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
 	public String getName() {
 		return name;
 	}

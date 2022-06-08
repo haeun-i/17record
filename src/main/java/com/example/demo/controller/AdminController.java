@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Item;
+import com.example.demo.domain.ItemForm;
+import com.example.demo.domain.SimpleItemDto;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserForm;
 import com.example.demo.service.ItemService;
@@ -23,6 +25,14 @@ public class AdminController {
 	
 	@Resource
 	private ItemService itemService;
+	
+	@RequestMapping("/")
+	public String indexPage(Model model){
+    	List<SimpleItemDto> items = itemService.recommendItem();
+    	model.addAttribute("items", items);
+		return "index"; 
+	}
+	
 
 	@RequestMapping("/adminuser")
 	public String userlist(Model model){

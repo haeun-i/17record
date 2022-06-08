@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.Artist;
 import com.example.demo.domain.Item;
 import com.example.demo.domain.ItemForm;
+import com.example.demo.domain.SimpleItemDto;
 import com.example.demo.domain.User;
 import com.example.demo.repository.ArtistRepository;
 import com.example.demo.repository.ItemRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +30,115 @@ public class ItemServiceImpl implements ItemService {
 	public List<Item> getItemList() {
 		return itemRepository.findAll();
 	}
+	
+	@Override
+	public List<SimpleItemDto> recommendItem(){
+		List<Item> items = itemRepository.recommendItem();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
+	
+	@Override
+	public List<SimpleItemDto> getBoygroup() {
+		List<Item> items = itemRepository.getBoygroup();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
 
+	@Override
+	public List<SimpleItemDto> getGirlgroup() {
+		List<Item> items = itemRepository.getGirlgroup();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
+	
+	@Override
+	public List<SimpleItemDto> getBoysolo() {
+		List<Item> items = itemRepository.getBoysolo();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
+	
+	@Override
+	public List<SimpleItemDto> getGirlsolo() {
+		List<Item> items = itemRepository.getGirlsolo();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
+	
+	@Override
+	public List<SimpleItemDto> getAbroad() {
+		List<Item> items = itemRepository.getAbroad();
+		List<SimpleItemDto> realItems = new ArrayList<>();
+		for(Item i : items) {
+			SimpleItemDto item = new SimpleItemDto();
+			item.setItemId(i.getItemId());
+			item.setItemImage(i.getItemImage());
+			item.setItemName(i.getItemName());
+			item.setItemPrice(i.getItemPrice());
+			item.setArtistName(i.getArtist().getArtistName());
+			
+			realItems.add(item);
+		}
+		
+		return realItems;
+	}
+	
 	@Override
 	public Item findItemById(long id) { return itemRepository.findById(id);	}
 

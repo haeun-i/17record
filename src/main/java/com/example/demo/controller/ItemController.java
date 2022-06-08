@@ -22,6 +22,13 @@ public class ItemController {
     @Resource
     private ArtistService artistService;
 
+    @RequestMapping("/item")
+    public String item(Long id, Model model){
+    	Item item = itemService.findItemById(id);
+    	model.addAttribute("item", item);
+        return "item/item";
+    }
+    
     @RequestMapping("/itemform")
     public String sign(Model model){
         List<Artist> artists = artistService.getArtistList();
@@ -45,8 +52,44 @@ public class ItemController {
     
     @RequestMapping("/showboygroup")
     public String showBoygroup(Model model){
-    	List<Item> items = itemService.getBoygroup();
-        return "item/boygroup";
+    	List<SimpleItemDto> items = itemService.getBoygroup();
+    	model.addAttribute("items", items);
+    	model.addAttribute("itemform",new ItemForm());
+        return "item/showAllItems";
     }
+    
+    @RequestMapping("/showgirlgroup")
+    public String showGirlgroup(Model model){
+    	List<SimpleItemDto> items = itemService.getGirlgroup();
+    	model.addAttribute("items", items);
+    	model.addAttribute("itemform",new ItemForm());
+        return "item/showAllItems";
+    }
+    
+    @RequestMapping("/showboysolo")
+    public String showBoysolo(Model model){
+    	List<SimpleItemDto> items = itemService.getBoysolo();
+    	model.addAttribute("items", items);
+    	model.addAttribute("itemform",new ItemForm());
+        return "item/showAllItems";
+    }
+    
+    @RequestMapping("/showgirlsolo")
+    public String showGirlsolo(Model model){
+    	List<SimpleItemDto> items = itemService.getGirlsolo();
+    	model.addAttribute("items", items);
+    	model.addAttribute("itemform",new ItemForm());
+        return "item/showAllItems";
+    }
+    
+    @RequestMapping("/showabroad")
+    public String showAbroad(Model model){
+    	List<SimpleItemDto> items = itemService.getAbroad();
+    	model.addAttribute("items", items);
+    	model.addAttribute("itemform",new ItemForm());
+        return "item/showAllItems";
+    }
+
+
 
 }

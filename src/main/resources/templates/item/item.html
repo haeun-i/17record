@@ -117,22 +117,59 @@
 	<hr>
 
   <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      style="margin-left:5%; width:90%; padding-top:1%">
         <div class="col-auto d-none d-lg-block">
 			<img class="bd-placeholder-img"  width="200" height="250" th:src=@{${item.itemImage}}>
         </div>
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-success">추천 음반</strong>
           <strong>
-         	<h3>
-         		<a class="mb-0" style="color : black; display:block;" th:text="${item.itemName}" th:href="@{/item(id=${item.itemId})}"></a>
-         	</h3>
+         	<h3 class="mb-0" style="color : black; display:block;" th:text="${item.itemName}"></h3>
           </strong>
-          <p class="mb-auto" th:text="${item.itemPrice}"></p>
+          <br>
+          <br>
+          <div>가수명 : <p class="mb-auto" th:text="${artist.artistName}" style="display:inline;"></p></div>
+          <div>가격 : <p class="mb-auto" th:text="${item.itemPrice}" style="display:inline;"></p></div>
+          <div>상세설명 : <p class="mb-auto" th:text="${item.itemContent}" style="display:inline;"></p></div>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top : 30px">주문하기</button>
+        </div>
+        
+
+    </div>
+
+      
+
+    </div>
+ 
+    <hr>
+ 	<br>
+    <h6 class="mb-3" style="margin-left:10%; margin-bottom : 30px;">리뷰 목록</h6>
+          <div class="row mb-2">
+
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
+           <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">리뷰번호</th>
+              <th scope="col">리뷰내용</th>
+              <th scope="col">작성자</th>
+              <th scope="col">작성일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="review: ${review}">
+              <td scope="row" th:text="${review.reviewId}"></td>
+              <td scope="row" th:text="${review.reviewContent}"></td>
+              <td scope="row" th:text="${review.userName}"></td>
+              <td scope="row" th:text="${review.reviewDate}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="width:100%">
+        	<a class="btn btn-sm btn-outline-secondary" th:href="@{/reviewform(id=${item.itemId})}" style="margin:10px;float:right;">리뷰작성</a>
         </div>
         
       </div>
-    </div>
-
+      </div>
 </html>

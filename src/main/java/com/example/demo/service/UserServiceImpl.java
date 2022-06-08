@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User findUserByLogId(String logid) {
+		return userRepository.findbylogid(logid);
+	}
+	
+	@Override
 	public void save(User user) {
 		userRepository.save(user);
 	}

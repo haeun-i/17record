@@ -114,29 +114,40 @@
     </nav>
   </div>
 </div>
-<hr>
-  <div class="album py-5" style="margin-left : 5%;">
-  	  <div class="row">
-    <div class="col-md-4"  th:each="item: ${items}">
-       <div class="card shadow-sm" style="margin-top:7%">
-           	<div class="card-body">
-           		<img th:src=@{${item.itemImage}} style="width : 100%; height : 300px;">
-           		<a  style="color:black; display:block;" th:text="${item.itemName}" th:href="@{/item(id=${item.itemId})}"></a>
-           		
-           		<div class="d-flex float-right">
-           			<small class="text-muted" th:text="${item.artistName}"></small>
-                </div>
-                <br>
-                <div class="d-flex float-right">
-               		<small class="text-muted" th:text="${item.itemPrice}"></small>
-                </div>
-           	</div>
-       </div>
+	<hr>
+
+  <div class="row mb-2">
+
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      style="margin-left:5%; width:90%; padding-top:1%">
+        <div class="col-auto d-none d-lg-block">
+			<img class="bd-placeholder-img"  width="200" height="250" th:src=@{${item.itemImage}}>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong>
+         	<h3 class="mb-0" style="color : black; display:block;" th:text="${item.itemName}"></h3>
+          </strong>
+          <br>
+          <br>
+          <div>가수명 : <p class="mb-auto" th:text="${artist.artistName}" style="display:inline;"></p></div>
+          <div>가격 : <p class="mb-auto" th:text="${item.itemPrice}" style="display:inline;"></p></div>
+          <div>상세설명 : <p class="mb-auto" th:text="${item.itemContent}" style="display:inline;"></p></div>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top : 30px">주문하기</button>
+        </div>
 
     </div>
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
+    	<form th:action="@{/reviewAdd(id=${item.itemId})}" th:object="${reviewform}" method="post" style="width:100%;">
     
-  </div>
-  
-  </div>
+    <strong class="h6 mb-3 fw-normal">앨범에 대한 리뷰작성</strong>
+
+    <div class="form-floating">
+    	<label for="reviewContent"></label>
+    	<br>
+      	<textarea type="text" class="form-control" id="reviewContent" th:field="*{content}"></textarea>
+    </div>
+    <button class="btn btn-sm btn-outline-secondary" type="submit" style="margin-top : 30px; float:right;">등록하기</button>
+  </form>
+    </div>
 
 </html>

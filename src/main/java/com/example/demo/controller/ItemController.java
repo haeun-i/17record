@@ -2,6 +2,8 @@ package com.example.demo.controller;
 import com.example.demo.domain.*;
 import com.example.demo.service.ArtistService;
 import com.example.demo.service.ItemService;
+import com.example.demo.service.ReviewService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,11 +23,17 @@ public class ItemController {
 
     @Resource
     private ArtistService artistService;
+    
+    @Resource
+    private ReviewService reviewService;
 
     @RequestMapping("/item")
     public String item(Long id, Model model){
     	Item item = itemService.findItemById(id);
+    	List<ReviewDto> reviews = reviewService.findByItemId(item.getItemId());
+    	model.addAttribute("review", reviews);
     	model.addAttribute("item", item);
+    	model.addAttribute("artist", item.getArtist());
         return "item/item";
     }
     

@@ -1,5 +1,10 @@
 package com.example.demo.domain;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Item {
@@ -27,6 +32,18 @@ public class Item {
 	@OneToOne
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
+
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Review> reviews = new ArrayList<>();
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	public Long getItemId() {
 		return itemId;

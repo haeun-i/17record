@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,6 +33,7 @@ public class ReviewService {
 			ReviewDto review = new ReviewDto();
 			review.setReviewContent(r.getReviewContent());
 			review.setReviewDate(r.getReviewDate());
+			review.setReviewTitle(r.getReviewTitle());
 			review.setReviewId(r.getReviewId());
 			review.setUserName(r.getUser().getUserName());
 			
@@ -39,6 +41,10 @@ public class ReviewService {
 		}
 		
 		return realreviews;
+    }
+    
+    public Optional<Review> findById(Long id){
+		return reviewRepository.findById(id);
     }
     
 	public void save(Review review) {

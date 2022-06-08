@@ -136,36 +136,24 @@
         </div>
 
     </div>
-    </div>
-    <hr>
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
-    	
-    <div style="width:100%; margin-bottom:2%;">
-    	<strong class="h6 mb-3 fw-normal" style="margin-bottom:1%;">리뷰 제목</strong>
+    	<form th:action="@{/reviewAdd(id=${item.itemId})}" th:object="${reviewform}" method="post" style="width:100%;">
+    
+    <strong class="h6 mb-3 fw-normal">리뷰 제목</strong>
+	<div class="form-floating">
+    	<label for="reviewTitle"></label>
     	<br>
-		<div class="form-floating">
-      	<div class="form-control" id="reviewTitle">
-      		<p th:text="${review.reviewTitle}"></p>
-      	</div>
-    	</div>
+      	<input type="text" class="form-control" id="reviewTitle" th:field="*{title}"></input>
     </div>
-
     <br>
-    
-     <div style="width:100%;">
-    	 <strong class="h6 mb-3 fw-normal" style="margin-bottom:1%;">리뷰 내용</strong>
-    	 <br>
-    	<div class="form-floating">
-    	<div class="form-control" id="reviewContent">
-      		<p th:text="${review.reviewContent}"></p>
-      	</div>
+    <strong class="h6 mb-3 fw-normal">리뷰 내용</strong>
+    <div class="form-floating">
+    	<label for="reviewContent"></label>
+    	<br>
+      	<textarea type="text" class="form-control" id="reviewContent" th:field="*{content}"></textarea>
     </div>
-    </div>
-    
-    
-    
-   
-
+    <button class="btn btn-sm btn-outline-secondary" type="submit" style="margin-top : 30px; float:right;">등록하기</button>
+  </form>
     </div>
 
 </html>

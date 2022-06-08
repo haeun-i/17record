@@ -39,7 +39,7 @@ public class ReviewController {
     	model.addAttribute("item", item);
     	model.addAttribute("artist", item.getArtist());
 		model.addAttribute("reviewform",new ReviewForm());
-		return "item/review"; 
+		return "item/reviewAdd"; 
 	}
 	
 	@RequestMapping("/reviewAdd")
@@ -53,6 +53,7 @@ public class ReviewController {
 		review.setItem(item);
 		review.setUser(user);
 		review.setReviewDate(LocalDate.now());
+		review.setReviewTitle(reviewform.getTitle());
 		review.setReviewContent(reviewform.getContent());
 		
 		reviewService.save(review);
@@ -61,6 +62,16 @@ public class ReviewController {
 		return "redirect:/item";
 	}
 
+	@RequestMapping("/detailreview")
+	public String detailreview(Long id, Model model){
+		Review review = reviewService.findById(id).get();
+		Item item = review.getItem();
+		
+    	model.addAttribute("review", review);
+    	model.addAttribute("item", item);
+    	model.addAttribute("artist", item.getArtist());
+		return "item/review"; 
+	}
 
 
 

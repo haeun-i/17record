@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ReviewRepository extends JpaRepository<Review,Long>{
-	Item findById(long id);
+	Review findById(long id);
 	void deleteById(Long id);
 	
 	@Query(value="select * from Review where item_id = :itemId", nativeQuery = true)

@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class ReviewDto {
 
 	private Long reviewId;
+	private String reviewTitle;
 	private String reviewContent;
 	private LocalDate reviewDate;
 	private String userName;
@@ -16,6 +17,12 @@ public class ReviewDto {
 	}
 	public void setReviewId(Long reviewId) {
 		this.reviewId = reviewId;
+	}
+	public String getReviewTitle() {
+		return reviewTitle;
+	}
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
 	}
 	public String getReviewContent() {
 		return reviewContent;
@@ -35,5 +42,7 @@ public class ReviewDto {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	
 
 }

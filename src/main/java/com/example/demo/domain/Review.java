@@ -15,6 +15,9 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long reviewId;
 
+	@Column(name = "review_title", nullable = false)
+	private String reviewTitle;
+	
 	@Column(name = "review_content", nullable = false)
 	private String reviewContent;
 	
@@ -38,6 +41,14 @@ public class Review {
 
 	public void setReviewId(Long reviewId) {
 		this.reviewId = reviewId;
+	}
+
+	public String getReviewTitle() {
+		return reviewTitle;
+	}
+
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
 	}
 
 	public String getReviewContent() {
@@ -71,6 +82,7 @@ public class Review {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+
 	
 }

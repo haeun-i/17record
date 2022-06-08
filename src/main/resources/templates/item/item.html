@@ -152,7 +152,7 @@
           <thead>
             <tr>
               <th scope="col">리뷰번호</th>
-              <th scope="col">리뷰내용</th>
+              <th scope="col">리뷰제목</th>
               <th scope="col">작성자</th>
               <th scope="col">작성일</th>
             </tr>
@@ -160,7 +160,10 @@
           <tbody>
             <tr th:each="review: ${review}">
               <td scope="row" th:text="${review.reviewId}"></td>
-              <td scope="row" th:text="${review.reviewContent}"></td>
+              <td scope="row">
+              	<a th:text="${review.reviewTitle}" th:href="@{/detailreview(id=${review.reviewId})}"
+              		style="color:black;">
+              </td>
               <td scope="row" th:text="${review.userName}"></td>
               <td scope="row" th:text="${review.reviewDate}"></td>
             </tr>

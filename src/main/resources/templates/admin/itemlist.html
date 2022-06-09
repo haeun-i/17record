@@ -141,7 +141,7 @@
               <td scope="row" th:text="${item.itemPrice}"></td>
               <td scope="row" th:text="${item.itemStock}"></td>
               <td scope="row" th:text="${item.itemContent}"></td>
-              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${item.itemId})}">상품수정</a></td>
+              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/modifyItemform(id=${item.itemId})}">상품수정</a></td>
               <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${item.itemId})}">상품삭제</a></td>
             </tr>
           </tbody>

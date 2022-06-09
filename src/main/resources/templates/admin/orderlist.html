@@ -1,6 +1,6 @@
-
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,57 +103,50 @@
       </div>
     </div>
   </header>
-
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="/showboygroup">보이그룹</a>
-      <a class="p-2 link-secondary" href="/showgirlgroup">걸그룹</a>
-      <a class="p-2 link-secondary" href="/showboysolo">남자솔로</a>
-      <a class="p-2 link-secondary" href="/showgirlsolo">여자솔로</a>
-      <a class="p-2 link-secondary" href="/showabroad">해외음악</a>
+      <a class="p-2 link-secondary" href="/adminuser">회원관리</a>
+      <a class="p-2 link-secondary" href="/adminitem">상품관리</a>
+      <a class="p-2 link-secondary" href="/adminorder">주문관리</a>
     </nav>
   </div>
 </div>
-	<hr>
+<hr>
 
-  <div class="row mb-2">
+	<h6 class="mb-3" style="margin-top : 30px; margin-left:10%; margin-bottom : 30px;">관리자 페이지 - 주문 관리</h6>    
+      <div class="table-responsive">
+        <table class="table table-striped table-sm" style="width : 80%; margin-left:10%;">
+          <thead>
+            <tr>
+              <th scope="col">주문번호</th>
+              <th scope="col">상품명</th>
+              <th scope="col">주문개수</th>
+              <th scope="col">총가격</th>
+              <th scope="col">주문자 이름</th>
+              <th scope="col">주문자 번호</th>
+              <th scope="col">주문자 주소</th>
+              <th scope="col">주문날짜</th>
+              <th scope="col">주문수정</th>
+              <th scope="col">주문삭제</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="order: ${orders}">
+              <td scope="row" th:text="${order.orderId}"></td>
+              <td scope="row" th:text="${order.itemName}"></td>
+              <td scope="row" th:text="${order.orderCount}"></td>
+              <td scope="row" th:text="${order.totalPrice}"></td>
+              <td scope="row" th:text="${order.orderName}"></td>
+              <td scope="row" th:text="${order.orderPhone}"></td>
+              <td scope="row" th:text="${order.orderAddress}"></td>
+              <td scope="row" th:text="${order.orderDate}"></td>
+              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${order.orderId})}">주문수정</a></td>
+              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteItem(id=${order.orderId})}">주문삭제</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-      style="margin-left:5%; width:90%; padding-top:1%">
-        <div class="col-auto d-none d-lg-block">
-			<img class="bd-placeholder-img"  width="200" height="250" th:src=@{${item.itemImage}}>
-        </div>
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong>
-         	<h3 class="mb-0" style="color : black; display:block;" th:text="${item.itemName}"></h3>
-          </strong>
-          <br>
-          <br>
-          <div>가수명 : <p class="mb-auto" th:text="${artist.artistName}" style="display:inline;"></p></div>
-          <div>가격 : <p class="mb-auto" th:text="${item.itemPrice}" style="display:inline;"></p></div>
-          <div>상세설명 : <p class="mb-auto" th:text="${item.itemContent}" style="display:inline;"></p></div>
-          <a class="w-100 btn btn-primary btn-lg" th:href="@{/orderform(id=${item.itemId})}" style="margin-top : 30px">주문하기</a>
-        </div>
 
-    </div>
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
-    	<form th:action="@{/reviewAdd(id=${item.itemId})}" th:object="${reviewform}" method="post" style="width:100%;">
-    
-    <strong class="h6 mb-3 fw-normal">리뷰 제목</strong>
-	<div class="form-floating">
-    	<label for="reviewTitle"></label>
-    	<br>
-      	<input type="text" class="form-control" id="reviewTitle" th:field="*{title}"></input>
-    </div>
-    <br>
-    <strong class="h6 mb-3 fw-normal">리뷰 내용</strong>
-    <div class="form-floating">
-    	<label for="reviewContent"></label>
-    	<br>
-      	<textarea type="text" class="form-control" id="reviewContent" th:field="*{content}"></textarea>
-    </div>
-    <button class="btn btn-sm btn-outline-secondary" type="submit" style="margin-top : 30px; float:right;">등록하기</button>
-  </form>
-    </div>
-
+  </body>
 </html>

@@ -137,21 +137,35 @@
 
     </div>
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
-    	<form th:action="@{/reviewAdd(id=${item.itemId})}" th:object="${reviewform}" method="post" style="width:100%;">
+    	<form th:action="@{/orderAdd(id=${item.itemId})}" th:object="${orderform}" method="post" style="width:100%;">
     
-    <strong class="h6 mb-3 fw-normal">리뷰 제목</strong>
+    <strong class="h6 mb-3 fw-normal">주문 수량</strong>
 	<div class="form-floating">
-    	<label for="reviewTitle"></label>
+    	<label for="orderCount"></label>
     	<br>
-      	<input type="text" class="form-control" id="reviewTitle" th:field="*{title}"></input>
+      	<input type="number" class="form-control" id="orderCount" th:field="*{orderCount}"></input>
     </div>
     <br>
-    <strong class="h6 mb-3 fw-normal">리뷰 내용</strong>
+    <strong class="h6 mb-3 fw-normal">주문자 이름</strong>
     <div class="form-floating">
-    	<label for="reviewContent"></label>
+    	<label for="orderName"></label>
     	<br>
-      	<textarea type="text" class="form-control" id="reviewContent" th:field="*{content}"></textarea>
+      	<input type="text" class="form-control" id="orderName" th:field="*{orderName}"></textarea>
     </div>
+    
+    <strong class="h6 mb-3 fw-normal">주문자 번호</strong>
+    <div class="form-floating">
+    	<label for="orderPhone"></label>
+    	<br>
+      	<input type="text" class="form-control" id="orderPhone" th:field="*{orderPhone}"></textarea>
+    </div>
+        <strong class="h6 mb-3 fw-normal">주문자 주소</strong>
+    <div class="form-floating">
+    	<label for="orderAddress"></label>
+    	<br>
+      	<input type="text" class="form-control" id="orderAddress" th:field="*{orderAddress}"></textarea>
+    </div>
+    
     <button class="btn btn-sm btn-outline-secondary" type="submit" style="margin-top : 30px; float:right;">등록하기</button>
   </form>
     </div>

@@ -32,9 +32,21 @@ public class User {
 	@Column(name = "user_role", nullable = false)
 	private String userRole;
 
-	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Review> reviews = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Order> orders = new ArrayList<>();
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
 	public Long getUserId() {
 		return userId;

@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -132,7 +132,7 @@
           <div>가수명 : <p class="mb-auto" th:text="${artist.artistName}" style="display:inline;"></p></div>
           <div>가격 : <p class="mb-auto" th:text="${item.itemPrice}" style="display:inline;"></p></div>
           <div>상세설명 : <p class="mb-auto" th:text="${item.itemContent}" style="display:inline;"></p></div>
-          <button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top : 30px">주문하기</button>
+          <a class="w-100 btn btn-primary btn-lg" th:href="@{/orderform(id=${item.itemId})}" style="margin-top : 30px">주문하기</a>
         </div>
 
     </div>

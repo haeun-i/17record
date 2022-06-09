@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Item;
 import com.example.demo.domain.ItemForm;
+import com.example.demo.domain.Order;
+import com.example.demo.domain.OrderDto;
 import com.example.demo.domain.SimpleItemDto;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserForm;
 import com.example.demo.service.ItemService;
+import com.example.demo.service.OrderService;
 import com.example.demo.service.UserService;
 
 import javax.annotation.Resource;
@@ -25,6 +28,9 @@ public class AdminController {
 	
 	@Resource
 	private ItemService itemService;
+	
+	@Resource
+	private OrderService orderService;
 	
 	@RequestMapping("/")
 	public String indexPage(Model model){
@@ -46,6 +52,13 @@ public class AdminController {
 		List<Item> items = itemService.getItemList();
 		model.addAttribute("items",items);
 		return "admin/itemlist"; 
+	}
+	
+	@RequestMapping("/adminorder")
+	public String orderlist(Model model){
+		List<OrderDto> orders = orderService.getOrderList();
+		model.addAttribute("orders",orders);
+		return "admin/orderlist"; 
 	}
 	
 }

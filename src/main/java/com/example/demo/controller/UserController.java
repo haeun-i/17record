@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.LoginForm;
+import com.example.demo.domain.OrderDto;
+import com.example.demo.domain.OrderForm;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserForm;
+import com.example.demo.service.OrderService;
 import com.example.demo.service.UserService;
 
 import javax.annotation.Resource;
@@ -21,6 +24,9 @@ public class UserController {
 
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private OrderService orderService;
 
 	@RequestMapping("/sign")
 	public String sign(Model model, HttpSession session){
@@ -102,6 +108,40 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/"; 
 	}
+	
+	@RequestMapping("/mypage")
+	public String mypage(Model model, HttpSession session){
+		String logid = (String)session.getAttribute("id");
+		User user = userService.findUserByLogId(logid);
+		List<OrderDto> orders = orderService.changeToDto(user.getOrders());
+		
+		model.addAttribute("user", user);
+		model.addAttribute("orders", orders);
+		return "user/mypage"; 
+	}
+	
+	@RequestMapping("/modifyuser")
+	public String modifyUser(Model model, HttpSession session){
+		String logid = (String)session.getAttribute("id");
+		User user = userService.findUserByLogId(logid);
+		UserForm userform = new UserForm();
+		userform.setAddress(user.getUserAddress());
+		userform.setLogid(user.getUserLogid());
+		userform.setName(user.getUserName());
+		userform.setPassword(user.getUserPw());
+		userform.setPhone(user.getUserPhone());
+		
+		model.addAttribute("userform", userform);
+		return "user/userModify"; 
+	}
+	
+	@RequestMapping("/modify")
+    public String modify(UserForm userform, HttpSession session){
+		String logid = (String)session.getAttribute("id");
+		User user = userService.findUserByLogId(logid);
+    	userService.modify(user, userform);
+        return "redirect:/mypage";
+    }
 	
 	@RequestMapping("/delete")
 	public String edit(Long id){

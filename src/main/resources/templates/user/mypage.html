@@ -103,19 +103,46 @@
       </div>
     </div>
   </header>
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="/adminuser">회원관리</a>
-      <a class="p-2 link-secondary" href="/adminitem">상품관리</a>
-      <a class="p-2 link-secondary" href="/adminorder">주문관리</a>
-    </nav>
-  </div>
-</div>
-<hr>
+  <hr>
+  <br>
+  <br>
+  
+      <h6 class="mb-3" style="margin-left:10%; margin-bottom : 30px;">유저 정보</h6>
+          <div class="row mb-2">
 
-	<h6 class="mb-3" style="margin-top : 30px; margin-left:10%; margin-bottom : 30px;">관리자 페이지 - 주문 관리</h6>    
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
+           <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">아이디</th>
+              <th scope="col">비밀번호</th>
+              <th scope="col">이름</th>
+              <th scope="col">전화번호</th>
+              <th scope="col">주소</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row" th:text="${user.userLogid}"></td>
+              <td scope="row" th:text="${user.userPw}"></td>
+              <td scope="row" th:text="${user.userName}"></td>
+              <td scope="row" th:text="${user.userPhone}"></td>
+               <td scope="row" th:text="${user.userAddress}"></td>
+            </tr>
+          </tbody>
+        </table>
+  		<div style="width:100%">
+        	<a class="btn btn-sm btn-outline-secondary" th:href="@{/modifyuser}" style="margin:10px;float:right;">정보수정</a>
+        </div>
+        </div>
+      </div>
+      
+            <h6 class="mb-3" style="margin-left:10%; margin-bottom : 30px;">주문 내역</h6>
+          <div class="row mb-2">
+
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
       <div class="table-responsive">
-        <table class="table table-striped table-sm" style="width : 80%; margin-left:10%;">
+        <table class="table table-striped table-sm" style="width : 100%;">
           <thead>
             <tr>
               <th scope="col">주문번호</th>
@@ -146,7 +173,8 @@
           </tbody>
         </table>
       </div>
-
-
+        </div>
+      </div>
+  
   </body>
 </html>

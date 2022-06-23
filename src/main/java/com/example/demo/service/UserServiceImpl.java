@@ -1,6 +1,7 @@
 package com.example.demo.service;
 import com.example.demo.domain.LoginForm;
 import com.example.demo.domain.User;
+import com.example.demo.domain.UserForm;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void edit(User user) {
+	public void modify(User user, UserForm userform) {
+		user.setUserAddress(userform.getAddress());
+		user.setUserLogid(userform.getLogid());
+		user.setUserName(userform.getName());
+		user.setUserPhone(userform.getPhone());
+		user.setUserPw(userform.getPassword());
+		
 		userRepository.save(user);
 	}
 

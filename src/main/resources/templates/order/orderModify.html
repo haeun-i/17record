@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.98.0">
+    <title>17레코드</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+	<link rel="stylesheet" href="./dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+
+
+  </head>
+  <body>
+    
+<div class="container">
+  <header class="blog-header lh-1 py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+    <div class="col-4 pt-1">
+        <a class="link-secondary" href="/loginadmin" style="color : grey;">관리자</a>
+      </div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="/">17레코드</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+      
+    <div>
+    <div th:if="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/login" style="margin:10px;">로그인</a>
+    </div>
+    <div th:unless="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/logout" style="margin:10px;">로그아웃</a>
+    </div>
+	</div>
+		
+		
+	<div>
+    <div th:if="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/sign">회원가입</a>
+    </div>
+    <div th:unless="${session.id == null}">
+        <a class="btn btn-sm btn-outline-secondary" href="/mypage">마이페이지</a>
+    </div>
+	</div>
+        
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 link-secondary" href="/showboygroup">보이그룹</a>
+      <a class="p-2 link-secondary" href="/showgirlgroup">걸그룹</a>
+      <a class="p-2 link-secondary" href="/showboysolo">남자솔로</a>
+      <a class="p-2 link-secondary" href="/showgirlsolo">여자솔로</a>
+      <a class="p-2 link-secondary" href="/showabroad">해외음악</a>
+    </nav>
+  </div>
+</div>
+	<hr>
+
+  <div class="row mb-2">
+
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      style="margin-left:5%; width:90%; padding-top:1%">
+        <div class="col-auto d-none d-lg-block">
+			<img class="bd-placeholder-img"  width="200" height="250" th:src=@{${item.itemImage}}>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong>
+         	<h3 class="mb-0" style="color : black; display:block;" th:text="${item.itemName}"></h3>
+          </strong>
+          <br>
+          <br>
+          <div>가수명 : <p class="mb-auto" th:text="${artist.artistName}" style="display:inline;"></p></div>
+          <div>가격 : <p class="mb-auto" th:text="${item.itemPrice}" style="display:inline;"></p></div>
+          <div>상세설명 : <p class="mb-auto" th:text="${item.itemContent}" style="display:inline;"></p></div>
+          <a class="w-100 btn btn-primary btn-lg" th:href="@{/orderform(id=${item.itemId})}" style="margin-top : 30px">주문하기</a>
+        </div>
+
+    </div>
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width:90%; margin-left:5%; padding:3%;">
+    	<form th:action="@{/modifyOrder}" th:object="${orderform}" method="post" style="width:100%;">
+    
+    <strong class="h6 mb-3 fw-normal">주문 수량</strong>
+	<div class="form-floating">
+    	<label for="orderCount"></label>
+    	<br>
+      	<input type="number" class="form-control" id="orderCount" th:field="*{orderCount}"></input>
+    </div>
+    <br>
+    <strong class="h6 mb-3 fw-normal">주문자 이름</strong>
+    <div class="form-floating">
+    	<label for="orderName"></label>
+    	<br>
+      	<input type="text" class="form-control" id="orderName" th:field="*{orderName}"></textarea>
+    </div>
+    
+    <strong class="h6 mb-3 fw-normal">주문자 번호</strong>
+    <div class="form-floating">
+    	<label for="orderPhone"></label>
+    	<br>
+      	<input type="text" class="form-control" id="orderPhone" th:field="*{orderPhone}"></textarea>
+    </div>
+        <strong class="h6 mb-3 fw-normal">주문자 주소</strong>
+    <div class="form-floating">
+    	<label for="orderAddress"></label>
+    	<br>
+      	<input type="text" class="form-control" id="orderAddress" th:field="*{orderAddress}"></textarea>
+    </div>
+    <div class="col-12" style="display:none;">
+              <label for="orderId" class="form-label">간단 설명 </span></label>
+              <input type="text" class="form-control" id="orderId" th:field="*{orderId}">
+            </div>
+          <hr class="my-4">
+    <button class="btn btn-sm btn-outline-secondary" type="submit" style="margin-top : 30px; float:right;">주문수정</button>
+  </form>
+    </div>
+
+</html>

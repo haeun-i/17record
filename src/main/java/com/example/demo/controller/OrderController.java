@@ -34,12 +34,11 @@ public class OrderController {
     private OrderService orderService;
     
 	@RequestMapping("/orderform")
-	public String reviewform(Long id, Model model, HttpSession session){
+	public String orderform(Long id, Model model, HttpSession session){
 		String logid = (String)session.getAttribute("id");
 		User user = userService.findUserByLogId(logid);
     	Item item = itemService.findItemById(id);
     	
-    	System.out.println(user.getUserName());
     	model.addAttribute("user", user);
     	model.addAttribute("item", item);
     	model.addAttribute("artist", item.getArtist());
@@ -49,7 +48,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/orderAdd")
-	public String reviewAdd(OrderForm orderform, Long id, HttpSession session){
+	public String orderAdd(OrderForm orderform, Long id, HttpSession session){
 		String logid = (String)session.getAttribute("id");
 		User user = userService.findUserByLogId(logid);
 		Item item = itemService.findItemById(id);
@@ -69,5 +68,36 @@ public class OrderController {
 		
 		return "redirect:/";
 	}
+	
+    @RequestMapping("/modifyOrderform")
+    public String modifyOrderform(Long id, Model model){
+    	Order order = orderService.findOrderById(id);
+    	Item item = order.getItem();
+    	OrderForm orderform = new OrderForm();
+    	orderform.setOrderId(order.getOrderId());
+    	orderform.setOrderAddress(order.getOrderAddress());
+    	orderform.setOrderCount(order.getOrderCount());
+    	orderform.setOrderName(order.getOrderName());
+    	orderform.setOrderPhone(order.getOrderPhone());
+    	
+    	model.addAttribute("item", item);
+    	model.addAttribute("artist", item.getArtist());
+    	model.addAttribute("orderform", orderform);
+        return "order/orderModify";
+    }
+	
+    @RequestMapping("/modifyOrder")
+    public String modifyOrder(OrderForm orderform) throws Exception{
+    	orderService.modify(orderform);
+        return "redirect:/adminorder";
+    }
+	
+    @RequestMapping("/deleteOrder")
+    public String delete(Long id){
+        orderService.delete(id);
+        return "redirect:/adminorder";
+    }
+    
+    
 
 }

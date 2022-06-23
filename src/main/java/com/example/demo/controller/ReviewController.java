@@ -44,7 +44,7 @@ public class ReviewController {
 	
 	@RequestMapping("/reviewAdd")
 	public String reviewAdd(HttpServletRequest request, ReviewForm reviewform, Long id, 
-			HttpSession session, RedirectAttributes redirectAttributes){
+		HttpSession session, RedirectAttributes redirectAttributes){
 		String logid = (String)session.getAttribute("id");
 		User user = userService.findUserByLogId(logid);
 		

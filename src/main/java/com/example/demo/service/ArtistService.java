@@ -16,4 +16,8 @@ public class ArtistService {
     public List<Artist> getArtistList() {
         return artistRepository.findAll();
     }
+    
+    public Artist findArtist(String artistName) {
+    	return artistRepository.FindArtist(artistName);
+    }
 }

@@ -50,6 +50,30 @@ public class ItemController {
     	itemService.save(itemform);
         return "redirect:/adminitem";
     }
+    
+    @RequestMapping("/modifyItemform")
+    public String modifyItemform(Long id, Model model){
+    	Item item = itemService.findItemById(id);
+    	ItemForm itemform = new ItemForm();
+    	itemform.setArtist(item.getArtist().getArtistName());
+    	itemform.setContent(item.getItemContent());
+    	itemform.setImage(null);
+    	itemform.setName(item.getItemName());
+    	itemform.setPrice(item.getItemPrice());
+    	itemform.setStock(item.getItemStock());
+    	itemform.setItemId(item.getItemId());
+    	
+    	List<Artist> artists = artistService.getArtistList();
+        model.addAttribute("artists", artists);
+    	model.addAttribute("itemform", itemform);
+        return "item/itemModify";
+    }
+    
+    @RequestMapping("/modifyItem")
+    public String modifyItem(ItemForm itemform) throws Exception{
+    	itemService.modify(itemform);
+        return "redirect:/adminitem";
+    }
 
 
     @RequestMapping("/deleteItem")

@@ -18,6 +18,7 @@ public interface ItemService {
 	public List<SimpleItemDto> getAbroad();
 	public Item findItemById(long id);
 	public void save(ItemForm itemform) throws Exception;
+	public void modify(ItemForm itemform) throws Exception;
 	public void edit(Item user);
 	public void delete(long id);
 }

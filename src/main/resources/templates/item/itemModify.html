@@ -103,50 +103,65 @@
       </div>
     </div>
   </header>
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="/adminuser">회원관리</a>
-      <a class="p-2 link-secondary" href="/adminitem">상품관리</a>
-      <a class="p-2 link-secondary" href="/adminorder">주문관리</a>
-    </nav>
-  </div>
-</div>
-<hr>
+  <hr>
+  <br>
+  <br>
+  <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">아이템 수정</h4>
+        <form class="needs-validation" th:action="@{/modifyItem}" th:object="${itemform}" 
+        method="post" enctype="multipart/form-data">
+        
+          <div class="row g-3">
+            
+            <div class="col-12">
+              <label for="name" class="form-label">상품명 </span></label>
+              <input type="text" class="form-control" id="name" th:field="*{name}">
+            </div>
+            
+            <div class="col-12">
+              <label for="image" class="form-label">이미지 </span></label>
+              <input type="file" class="form-control" id="image" th:field="*{image}">
+            </div>
+            
+            <div class="col-12">
+              <label for="stock" class="form-label">재고 </span></label>
+              <input type="text" class="form-control" id="stock" th:field="*{stock}">
+            </div>
+            
+            <div class="col-12">
+              <label for="price" class="form-label">가격 </span></label>
+              <input type="text" class="form-control" id="price" th:field="*{price}">
+            </div>
 
-	<h6 class="mb-3" style="margin-top : 30px; margin-left:10%; margin-bottom : 30px;">관리자 페이지 - 주문 관리</h6>    
-      <div class="table-responsive">
-        <table class="table table-striped table-sm" style="width : 80%; margin-left:10%;">
-          <thead>
-            <tr>
-              <th scope="col">주문번호</th>
-              <th scope="col">상품명</th>
-              <th scope="col">주문개수</th>
-              <th scope="col">총가격</th>
-              <th scope="col">주문자 이름</th>
-              <th scope="col">주문자 번호</th>
-              <th scope="col">주문자 주소</th>
-              <th scope="col">주문날짜</th>
-              <th scope="col">주문수정</th>
-              <th scope="col">주문삭제</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="order: ${orders}">
-              <td scope="row" th:text="${order.orderId}"></td>
-              <td scope="row" th:text="${order.itemName}"></td>
-              <td scope="row" th:text="${order.orderCount}"></td>
-              <td scope="row" th:text="${order.totalPrice}"></td>
-              <td scope="row" th:text="${order.orderName}"></td>
-              <td scope="row" th:text="${order.orderPhone}"></td>
-              <td scope="row" th:text="${order.orderAddress}"></td>
-              <td scope="row" th:text="${order.orderDate}"></td>
-              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/modifyOrderform(id=${order.orderId})}">주문수정</a></td>
-              <td><a class="btn btn-sm btn-outline-secondary"  th:href="@{/deleteOrder(id=${order.orderId})}">주문삭제</a></td>
-            </tr>
-          </tbody>
-        </table>
+            <div class="col-12">
+              <label for="content" class="form-label">간단 설명 </span></label>
+              <input type="text" class="form-control" id="content" th:field="*{content}">
+            </div>
+
+            <div class="col-md-3">
+              <label for="artist" class="form-label">가수명</label>
+              <select th:field="*{artist}" class="form-select" id="artist">
+                <option value="">choose!</option>
+                <option th:each="artist : ${artists}" th:value="${artist.artistName}"
+                        th:text="${artist.artistName}"></option>
+
+              </select>
+            </div>
+
+			<div class="col-12" style="display:none;">
+              <label for="itemId" class="form-label">간단 설명 </span></label>
+              <input type="text" class="form-control" id="itemId" th:field="*{itemId}">
+            </div>
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top : 30px">상품수정</button>
+          </div>
+        </form>
       </div>
+  
+</div>
 
 
+	</main>
   </body>
 </html>

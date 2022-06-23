@@ -163,6 +163,29 @@ public class ItemServiceImpl implements ItemService {
 		
 		itemRepository.save(item);
 	}
+	
+	@Override
+	public void modify(ItemForm itemform) throws Exception {
+		Item item = itemRepository.findById(itemform.getItemId()).get();
+		Artist artist = artistRepository.FindArtist(itemform.getArtist());
+		MultipartFile file = itemform.getImage();
+		
+		String projectpath = System.getProperty("user.dir") + "/src/main/resources/static/img";
+		UUID uuid = UUID.randomUUID();
+		String filename = uuid + "_" + file.getOriginalFilename();
+		File saveFile = new File(projectpath, filename);
+		file.transferTo(saveFile);
+				
+		item.setItemName(itemform.getName());
+		item.setItemPrice(itemform.getPrice());
+		item.setItemStock(itemform.getStock());
+		item.setItemContent(itemform.getContent());
+		item.setItemImage("/img/" + filename);
+		item.setArtist(artist);
+		
+		itemRepository.save(item);
+		
+	}
 
 	@Override
 	public void edit(Item item) {

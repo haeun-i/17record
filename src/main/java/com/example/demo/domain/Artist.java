@@ -12,7 +12,7 @@ public class Artist {
 	@Column(name = "artist_name", nullable = false, unique = true)
 	private String artistName;
 
-	@Column(name = "category", nullable = false, unique = true)
+	@Column(name = "category", nullable = false)
 	private String category;
 
 	public Long getArtistId() {

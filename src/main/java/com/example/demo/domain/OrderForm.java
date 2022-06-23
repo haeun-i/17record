@@ -4,12 +4,19 @@ import javax.persistence.Column;
 
 public class OrderForm {
 
-	
+	private Long orderId;
 	private String orderName;
 	private String orderPhone;
 	private String orderAddress;
 	private int orderCount;
 	
+
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
 	public String getOrderName() {
 		return orderName;
 	}

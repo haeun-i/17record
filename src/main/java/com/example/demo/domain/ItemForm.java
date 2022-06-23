@@ -3,14 +3,23 @@ package com.example.demo.domain;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ItemForm {
-
-    private String name;
+	
+	private Long itemId;
+	private String name;
     private MultipartFile image;
 	private int stock;
     private int price;
     private String content;
     private String artist;
     
+
+    public Long getItemId() {
+		return itemId;
+	}
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
     public MultipartFile getImage() {
 		return image;
 	}
